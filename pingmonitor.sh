@@ -1,9 +1,13 @@
 #!/bin/bash
 
-# App : ping.monitor
+# App : pingmonitor
 # Version : 1.0
-# Author : Afgan Khalilov
+# Author : Afgan Khalilov, hovdev@protonmail.ch
+# Created in Beyli creative technologies, https://beylitech.az
 # Developed for strongSwan VPN on Linux
+
+
+# begin of app
 
 # define our gateway list
 declare -a gateways=(
