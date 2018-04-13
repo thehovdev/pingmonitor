@@ -17,6 +17,7 @@ declare -a gateways=(
 
 # get last ip from our gateway list
 last=${gateways[$(expr ${#gateways[@]} - 1)]}
+logfile="/var/log/pingmonitor.log"
 
 # loop for check gatewats
 while true;
@@ -30,16 +31,20 @@ do
         if [ $? -eq 0 ]
             then
             echo "ping success"
+
             # if all our gateways reachable and if this gateway last
             if [ "$i" = "$last" ]
                 then
                 # do something and exit programm
                 echo "all pings succesfull"
+                printf '%s\t all gateways reachable \n' "$(date)" >>$logfile
+
                 exit 0
             fi
         else
             # if 1 gateway from our loop fails, then restart vpn server or do something
             echo "ping fail"
+            printf '%s\t one of gateways not reachable, restarting vpn.. \n' "$(date)" >>$logfile
             exit 0
         fi
 
